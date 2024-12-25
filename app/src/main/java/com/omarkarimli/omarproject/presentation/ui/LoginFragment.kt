@@ -72,12 +72,15 @@ class LoginFragment : Fragment() {
     }
 
     private fun loginRequest(username: String, password: String) {
+        binding.buttonLogin.isEnabled = false
         binding.loading.visibility = View.VISIBLE
 
         val loginRequestModel = LoginRequestModel(username, password)
         api.loginUser(loginRequestModel).enqueue(object : retrofit2.Callback<LoginResponseModel>{
             override fun onFailure(call: Call<LoginResponseModel>, t: Throwable) {
                 Toast.makeText(context, t.message, Toast.LENGTH_SHORT).show()
+
+                binding.buttonLogin.isEnabled = true
             }
 
             override fun onResponse(
@@ -90,8 +93,9 @@ class LoginFragment : Fragment() {
 
                     findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToHomeFragment())
                 } else {
-                    Toast.makeText(context, "Failed login", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "Wrong Credentials", Toast.LENGTH_SHORT).show()
 
+                    binding.buttonLogin.isEnabled = true
                     binding.loading.visibility = View.GONE
                 }
             }

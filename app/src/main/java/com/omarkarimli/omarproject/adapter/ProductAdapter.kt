@@ -34,11 +34,7 @@ class ProductAdapter : RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() 
         }
 
         // Data binding
-//        holder.binding.product = product
-
-        holder.binding.textViewTitle.text = product.title
-        holder.binding.textViewDesc.text = product.description
-
+        holder.binding.product = product
 
         // Picasso
         Picasso

@@ -7,7 +7,7 @@
     <data>
         <variable
             name="product"
-            type="com.omarkarimli.omarproject.model.ProductModel" />
+            type="com.omarkarimli.omarproject.model.ProductModelSecond" />
     </data>
 
     <androidx.cardview.widget.CardView

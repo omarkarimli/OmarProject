@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.omarkarimli.omarproject.databinding.ItemProductBinding
+import com.omarkarimli.omarproject.databinding.ItemProductVerticalBinding
 import com.omarkarimli.omarproject.model.ProductModelSecond
 import com.squareup.picasso.Picasso
 
@@ -11,10 +12,11 @@ class ProductSecondAdapter : RecyclerView.Adapter<ProductSecondAdapter.ProductSe
 
     val list = arrayListOf<ProductModelSecond>()
 
-    inner class ProductSecondViewHolder(val itemProductBinding: ItemProductBinding) : RecyclerView.ViewHolder(itemProductBinding.root)
+    inner class ProductSecondViewHolder(val itemProductVerticalBinding: ItemProductVerticalBinding) :
+        RecyclerView.ViewHolder(itemProductVerticalBinding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductSecondViewHolder {
-        val layout = ItemProductBinding.inflate(
+        val layout = ItemProductVerticalBinding.inflate(
             LayoutInflater.from(parent.context), parent, false)
         return ProductSecondViewHolder(layout)
     }
@@ -26,14 +28,13 @@ class ProductSecondAdapter : RecyclerView.Adapter<ProductSecondAdapter.ProductSe
     override fun onBindViewHolder(holder: ProductSecondViewHolder, position: Int) {
         val product = list[position]
 
-        holder.itemProductBinding.textViewTitle.text = product.title
-        holder.itemProductBinding.textViewDesc.text = product.description
+        holder.itemProductVerticalBinding.product = product
 
         product.images?.get(0)?.let {
             Picasso
                 .get()
                 .load(it)
-                .into(holder.itemProductBinding.imageView)
+                .into(holder.itemProductVerticalBinding.imageView)
         }
     }
 

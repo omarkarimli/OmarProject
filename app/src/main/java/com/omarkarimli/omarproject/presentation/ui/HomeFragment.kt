@@ -89,7 +89,7 @@ class HomeFragment : Fragment() {
                     productsSecond?.let {
                         binding.progressBarVertical.visibility = View.GONE
                         binding.rvVertical.adapter = adapterSecond
-                        adapterSecond.updateList(productsSecond)
+                        adapterSecond.updateList(productsSecond.slice(0..9))
                     }
                 }
             }
